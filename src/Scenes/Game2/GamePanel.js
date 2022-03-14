@@ -3,7 +3,7 @@ import "../../stylesheets/styles.css";
 import BaseImage from '../../components/BaseImage';
 
 import { UserContext } from '../../components/BaseShot';
-import { prePathUrl, generateStandardNum } from "../../components/CommonFunctions"
+import { prePathUrl, generateStandardNum, setRepeatAudio, startRepeatAudio, stopRepeatAudio } from "../../components/CommonFunctions"
 
 let timerList = []
 //3.5,-3.5,
@@ -81,6 +81,7 @@ export default function Scene2({ finishGame, _baseGeo, stopSound }) {
     useEffect(
         () => {
 
+            setRepeatAudio(audioList.repeatAudio)
             isGameStarted = true;
 
             greenStarList.map(greenStar => { greenStar.current.style.opacity = 0 })
@@ -126,6 +127,8 @@ export default function Scene2({ finishGame, _baseGeo, stopSound }) {
     }
 
     function clickFunc(num, typeNum) {
+
+        stopRepeatAudio();
 
         if (currentNum == 0)
             stopSound()
@@ -229,6 +232,9 @@ export default function Scene2({ finishGame, _baseGeo, stopSound }) {
                                     }, 5000);
 
                                 }
+                                else {
+                                    startRepeatAudio();
+                                }
                             }, 2000);
                         }
 
@@ -237,6 +243,7 @@ export default function Scene2({ finishGame, _baseGeo, stopSound }) {
                                 starBaseList[i].current.style.cursor = 'default'
                             }
                             baseRef.current.style.pointerEvents = ''
+                            startRepeatAudio();
                         }
 
 
@@ -249,7 +256,7 @@ export default function Scene2({ finishGame, _baseGeo, stopSound }) {
 
                 audioList.buzzAudio.currentTime = 0;
                 audioList.buzzAudio.play();
-
+                startRepeatAudio();
                 showButtonAni(redStarList[typeNum], num, true, typeNum)
             }
         }
