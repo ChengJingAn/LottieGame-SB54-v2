@@ -201,7 +201,7 @@ export default function Scene2({ finishGame, _baseGeo, stopSound }) {
                             }
                             else {
                                 backRef.current.style.transition = '2s'
-                                backRef.current.style.transform = 'translate(' + (_baseGeo.width * (translateStartPos.x - currentStep * widthStep + 0.4)) + 'px, '
+                                backRef.current.style.transform = 'translate(' + (_baseGeo.width * (translateStartPos.x - currentStep * widthStep )) + 'px, '
                                     + _baseGeo.height * (translateStartPos.y + upStairList[currentStep] + 0.1) + 'px)'
                             }
 
@@ -218,6 +218,7 @@ export default function Scene2({ finishGame, _baseGeo, stopSound }) {
 
                                     characterList[0].current.setClass('hideObject')
                                     lastBoy.current.setClass('showOjbect')
+                                    trasureObj.current.setClass('aniObject')
 
                                     audioList.bodyAudio.play();
                                     audioList.clapAudio.play();
@@ -348,12 +349,12 @@ export default function Scene2({ finishGame, _baseGeo, stopSound }) {
                 />
 
                 < BaseImage
-                    scale={0.115}
+                    scale={0.3}
                     ref={trasureObj}
                     className='hideObject'
                     posInfo={{
-                        l: layoutStartPos.x + 6.605,
-                        b: layoutStartPos.y + 0.505 + 93 * stepRange
+                        l: layoutStartPos.x + 6.905,
+                        b: layoutStartPos.y + 0.4 + 93 * stepRange
                     }}
                     url={'SB54_Prop-Interactive/trasure_box.svg'}
                 />
